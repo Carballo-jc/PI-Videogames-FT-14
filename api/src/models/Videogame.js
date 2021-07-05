@@ -17,8 +17,4 @@ module.exports = (sequelize) => {
     rating: { type: DataTypes.STRING },
     platforms: { type: DataTypes.STRING, allowNull: false },
   });
-  // sequelize.define("gender", {
-  //   gameId: { type: DataTypes.INTEGER, unique: true },
-  //   name: { type: DataTypes.STRING },
-  // });
 };
