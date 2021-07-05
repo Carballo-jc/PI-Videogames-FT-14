@@ -6,15 +6,21 @@ module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define("videogame", {
     id: {
-      type: DataTypes.INTEGER,
-      autoIncrement: true,
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
       primaryKey: true,
-      unique: true,
     },
-    description: { type: DataTypes.TEXT, allowNull: false },
     name: { type: DataTypes.STRING, allowNull: false },
-    date_release: { type: DataTypes.DATE },
-    rating: { type: DataTypes.STRING },
-    platforms: { type: DataTypes.STRING, allowNull: false },
-  });
+    description: { type: DataTypes.TEXT, allowNull: false },
+    released: { type: DataTypes.DATE },
+    rating: { type: DataTypes.INTEGER },
+    platforms: { 
+      type: DataTypes.ARRAY(DataTypes.ENUM({
+      values: ['a','b']
+    }))
+  },
+  },
+  {timestamps: false}
+
+  );
 };

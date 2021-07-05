@@ -18,14 +18,44 @@
 //                       `=---='
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require("./src/app.js");
-const { conn } = require("./src/db.js");
+const { conn , Gender,Videogame} = require("./src/db.js");
 require("dotenv").config();
+const { getGenderAll } = require("../api/src/controllers");
 
 const PORT = process.env.PORT || 3001;
 
 // Syncing all the models at once.
-conn.sync({ force: true }).then(() => {
-  server.listen(PORT, () => {
+conn.sync({ force: true }).then(async () => {
+  server.listen(PORT, async () => {
     console.log(`servidor listening at:${PORT}`); // eslint-disable-line no-console
+
+    const gamerOne = await Videogame.create({ 
+      name:"frefire",
+      description:"juego movil",
+      platforms:["a","b"]
+    });
+    const gamerTwo = await Videogame.create({ 
+      name:"frefire2",
+      description:"juego movil apuebas",
+      platforms:["a","b"]
+    });
+      const gender1 = await Gender.create({ 
+        name:"a"
+      });
+      const gender2 = await Gender.create({ 
+        name:"b"
+      });
+      gamerOne.setGenders(gender1);
+      gamerOne.setGenders(gender2);
+      gamerTwo.setGenders(gender2);
+//precargar generos a la BD
+    const allGenres = await getGenderAll();
+    allGenres.forEach( async(genre) => {
+      await Gender.create({
+        name: genre.name,
+      });
+    });
   });
+
+
 });

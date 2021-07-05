@@ -1,5 +1,5 @@
 const express = require("express");
-const { getGamer } = require("../controllers/getGamer");
+const { getGamer } = require("../controllers");
 const { Videogame } = require("../db");
 
 const router = require("express").Router();
@@ -30,9 +30,9 @@ router.get("/:id", async (req, res) => {
 router.post("/", async (req, res) => {
   const { name, description, released, rating, platforms, genres } = req.body;
   if (!name || !description || !platforms) {
-    return res
-      .status(400)
-      .json({ msg: "Error: name, description and platforms son requeridos" });
+    return res.status(400).json({
+      msg: "Error: name, description and platforms son requeridos",
+    });
   }
   const createGame = await Videogame.create({
     name,
@@ -41,7 +41,7 @@ router.post("/", async (req, res) => {
     rating,
     platforms,
   });
-  await createGame.setGender(genres);
+  await createGame.setGenders(genres);
   return res.json(createGame);
 });
 
