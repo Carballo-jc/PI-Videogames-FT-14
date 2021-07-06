@@ -17,10 +17,12 @@
 //     =====`-.____`.___ \_____/___.-`___.-'=====
 //                       `=---='
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-const server = require("./src/app.js");
-const { conn , Gender,Videogame} = require("./src/db.js");
 require("dotenv").config();
+const server = require("./src/app.js");
+const { conn, Gender, Videogame } = require("./src/db.js");
 const { getGenderAll } = require("../api/src/controllers");
+const axios = require("axios");
+const { URL_BASE, API_KEY } = process.env;
 
 const PORT = process.env.PORT || 3001;
 
@@ -29,28 +31,34 @@ conn.sync({ force: true }).then(async () => {
   server.listen(PORT, async () => {
     console.log(`servidor listening at:${PORT}`); // eslint-disable-line no-console
 
-    const gamerOne = await Videogame.create({ 
-      name:"frefire",
-      description:"juego movil",
-      platforms:["a","b"]
+    // axios.get(`${URL_BASE}games?${API_KEY}`).then((result) => {
+    //   result.data.results.map((game) => {
+    //     const { name, description, platforms } = game;
+    //   });
+    // });
+
+    const gamerOne = await Videogame.create({
+      name: "frefire",
+      description: "juego movil",
+      platforms: ["a", "b"],
     });
-    const gamerTwo = await Videogame.create({ 
-      name:"frefire2",
-      description:"juego movil apuebas",
-      platforms:["a","b"]
+    const gamerTwo = await Videogame.create({
+      name: "frefire2",
+      description: "juego movil apuebas",
+      platforms: ["a", "b"],
     });
-      const gender1 = await Gender.create({ 
-        name:"a"
-      });
-      const gender2 = await Gender.create({ 
-        name:"b"
-      });
-      gamerOne.setGenders(gender1);
-      gamerOne.setGenders(gender2);
-      gamerTwo.setGenders(gender2);
-//precargar generos a la BD
+    const gender1 = await Gender.create({
+      name: "a",
+    });
+    const gender2 = await Gender.create({
+      name: "b",
+    });
+    gamerOne.setGenders(gender1);
+    gamerOne.setGenders(gender2);
+    gamerTwo.setGenders(gender2);
+    //precargar generos a la BD
     const allGenres = await getGenderAll();
-    allGenres.forEach( async(genre) => {
+    allGenres.forEach(async (genre) => {
       await Gender.create({
         name: genre.name,
       });

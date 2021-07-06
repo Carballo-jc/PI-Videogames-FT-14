@@ -4,24 +4,51 @@ const { Videogame, Gender } = require("../db");
 const { API_KEY, URL_BASE } = process.env;
 
 //obtener todos los juegos desde la api
-const getGamerAll = () => {
-  const url = `${URL_BASE}games?${API_KEY}`;
-  const videogames = axios.get(url).then((result) =>
-    result.data.results.map((gamer) => {
-      const { id, name, background_image, released, rating, platforms } = gamer;
-      return {
-        id,
-        name,
-        background_image,
-        released,
-        rating,
-        platforms: platforms.map((consola) => consola.platform.name),
-      };
-    })
-  );
-
-  return videogames;
+const getGamerAll = async () => {
+  let gamerSaves = [];
+  for (let page = 1; page <= 5; page++) {
+    const consulta = await axios.get(
+      `${URL_BASE}games?${API_KEY}&page=${page}`
+    );
+    const datos = consulta.data.results;
+    datos.map((gamer) => {
+      const { id, name, background_image, released, rating, platforms } =
+         gamer;
+      gamerSaves.push({
+        id: "API_ID:" + id,
+          name,
+          background_image,
+          released,
+          rating,
+          platforms: platforms.map((consola) => consola.platform.name),
+      });
+    });
+  }
+  console.log(gamerSaves.length);
+  return gamerSaves;
 };
+// const getGamerAll = () => {
+//   for (let page = 1; page <= 5; page++) {
+//     const url = `${URL_BASE}games?${API_KEY}&page=${page}`;
+//     const videogames = axios.get(url).then((result) =>
+//       result.data.results.map((gamer) => {
+//         const { id, name, background_image, released, rating, platforms } =
+//           gamer;
+//         return {
+//           id: "API_ID:" + id,
+//           name,
+//           background_image,
+//           released,
+//           rating,
+//           platforms: platforms.map((consola) => consola.platform.name),
+//         };
+//       })
+//     );
+//     return videogames;
+//   }
+ 
+
+// };
 //obtener por juego
 const getGamer = (name) => {
   const gamer_url = axios
@@ -41,7 +68,7 @@ const getGamerFromDB = async () => {
   const videogamersFromDB = gamerDB.map((result) => {
     return {
       ...result.dataValues,
-      id: result.dataValues.id,
+      id: "DB_ID:" + result.dataValues.id,
     };
   });
 

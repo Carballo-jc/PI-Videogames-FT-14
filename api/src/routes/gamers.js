@@ -10,8 +10,9 @@ router.get("/", async (req, res) => {
   }  else  {
     const gamerFromApi = await getGamerAll();
     const gamerFromDB = await getGamerFromDB();
-    gamerAll = [gamerFromApi, gamerFromDB];
+    gamerAll = [...gamerFromApi, ...gamerFromDB];
   }
+  console.log(gamerAll.length);
   res.json({
     msg: "GET Gamer Api and DB",
     gamerAll,
