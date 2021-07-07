@@ -5,15 +5,14 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./store";
 //Components
-import Home from "./components/Home";
+import PageHome from "./views/PageHome";
 
 function App() {
   return (
     <Router>
       <Provider store={store}>
         <div className="container mt-5">
-          <h1>listo</h1>
-          <Home />
+          <PageHome />
           {/* <Switch>
             <Route exact path="/productos" component={Products} />
             <Route exact path="/productos/nuevo" component={NewProduct} />
