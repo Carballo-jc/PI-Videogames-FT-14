@@ -15,3 +15,33 @@ const getGamerAll = () => {
   );
   return videogames;
 };
+// const getGamerAll = async () => {
+//   try {
+//     let gamerSaves = [];
+//       let getFromApi = await axios.get(`${URL_BASE}games?${API_KEY}`);
+//       for (let page = 0; page < 5; page++) {
+//         let next = getFromApi.data.next;
+//         getFromApi = await axios.get(next);
+//         let data = getFromApi.data.results;
+//         data.map((gamer) => {
+//           const { id, name, background_image, released, rating, platforms } =
+
+//             gamer;
+//           gamerSaves.push({
+//             id: "API_ID:" + id,
+//             name,
+//             background_image,
+//             released,
+//             rating,
+//             platforms: platforms.map((consola) => consola.platform.name),
+//           });
+//         });
+//       }
+//       console.log("total de juegos", gamerSaves.length);
+//       return gamerSaves;
+//   } catch (error) {
+//     console.log('Hubo un error al hacer la consulta')
+//     console.log(error);
+//   }
+
+// };

@@ -4,42 +4,41 @@ const { Videogame, Gender } = require("../db");
 const { API_KEY, URL_BASE } = process.env;
 
 //obtener todos los juegos desde la api
+
 const getGamerAll = async () => {
-  try {
-    let gamerSaves = [];
-      let getFromApi = await axios.get(`${URL_BASE}games?${API_KEY}`);
-      for (let page = 0; page < 5; page++) {
-        let next = getFromApi.data.next;
-        getFromApi = await axios.get(next);
-        let data = getFromApi.data.results;
-        data.map((gamer) => {
-          const { id, name, background_image, released, rating, platforms } =
-       
-            gamer;
-          gamerSaves.push({
-            id: "API_ID:" + id,
-            name,
-            background_image,
-            released,
-            rating,
-            platforms: platforms.map((consola) => consola.platform.name),
-          });
-        });
-      }
-      console.log("total de juegos", gamerSaves.length);
-      return gamerSaves;
-  } catch (error) {
-    console.log('Hubo un error al hacer la consulta')
-    console.log(error);
+  let gamerSaves = [];
+  let next, getFromApi, data;
+  for (let page = 1; page <= 5; page++) {
+    if (page === 1) {
+      getFromApi = await axios.get(`${URL_BASE}games?${API_KEY}`);
+      next = getFromApi.data.next;
+    } else {
+      getFromApi = await axios.get(next);
+      next = getFromApi.data.next;
+    };
+    data = getFromApi.data.results.map((gamer) => {
+      const { id, name, background_image, released, rating, platforms } = gamer;
+
+      return {
+        id: "API_ID:" + id,
+        name,
+        background_image,
+        released,
+        rating,
+        platforms: platforms.map((consola) => consola.platform.name),
+      };
+    });
+    console.log("total de juegos", gamerSaves.length);
+    gamerSaves= gamerSaves.concat(data);
   }
- 
+  return gamerSaves;
 };
 
 //obtener por juego
 const getGamer = (name) => {
   const gamer_url = axios
-    .get(`${URL_BASE}games/${name}?${API_KEY}`)
-    .then((gamer) => gamer.data);
+    .get(`${URL_BASE}games?${API_KEY}&search=${name}`)
+    .then((gamer) => gamer.data.results);
   return gamer_url;
 };
 //desde la base de datos
