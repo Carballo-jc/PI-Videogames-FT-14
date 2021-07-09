@@ -17,14 +17,16 @@ const getGamerAll = async () => {
       next = getFromApi.data.next;
     };
     data = getFromApi.data.results.map((gamer) => {
-      const { id, name, background_image, released, rating, platforms } = gamer;
+      const { id, name, background_image, released, rating, platforms, slug } =
+        gamer;
 
       return {
-        id: "API_ID:" + id,
+        id,
         name,
         background_image,
         released,
         rating,
+        slug,
         platforms: platforms.map((consola) => consola.platform.name),
       };
     });
@@ -33,7 +35,12 @@ const getGamerAll = async () => {
   }
   return gamerSaves;
 };
-
+//por id
+const getGamerById = (id) => {
+  const gamer_id = axios.get(`${URL_BASE}games/${id}?${API_KEY}`)
+  .then(gamer => gamer.data);
+  return gamer_id;
+}
 //obtener por juego
 const getGamer = (name) => {
   const gamer_url = axios
@@ -71,4 +78,5 @@ module.exports = {
   getGenderAll,
   getGamer,
   getGamerFromDB,
+  getGamerById,
 };

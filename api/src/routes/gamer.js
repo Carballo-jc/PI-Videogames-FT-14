@@ -1,11 +1,11 @@
 const express = require("express");
-const { getGamer } = require("../controllers");
+const { getGamerById } = require("../controllers");
 const { Videogame } = require("../db");
 
 const router = require("express").Router();
 
 router.get("/:id", async (req, res) => {
-  const gamer = await getGamer(req.params.id);
+  const gamer = await getGamerById(req.params.id);
   const {
     id,
     name,
@@ -23,7 +23,7 @@ router.get("/:id", async (req, res) => {
     released,
     rating,
     background_image,
-    platforms: platforms.map((consola) => consola.platform.name),
+    platforms,
   });
 });
 
