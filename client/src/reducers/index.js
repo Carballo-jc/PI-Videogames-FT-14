@@ -1,7 +1,9 @@
-import { GET_GAMERS } from "../types";
+import { GET_GAMERS, SEARCH_GAMER } from "../types";
+
 
 const initialState = {
   videogames: [],
+  onegamer:{}
 };
 
 const videoGames = (state = initialState, action) => {
@@ -9,8 +11,13 @@ const videoGames = (state = initialState, action) => {
     case GET_GAMERS:
       return {
         ...state,
-        videoGames: action.payload,
+        videogames: action.payload,
       };
+      case SEARCH_GAMER:
+        return{
+          ...state,
+          onegamer: action.payload
+        }
     default:
       return state;
   }
