@@ -15,7 +15,7 @@
   color: white;
 }
 .content_cards {
-  background-image: url(../../../assets/images/5.jpg);
+  background-image: url(../../../assets/images/1.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   height: 100vh;
@@ -24,7 +24,8 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin: auto;
+  /* margin: auto; */
+  margin-top: 50px;
   overflow: auto;
 }
 .content_cards::-webkit-scrollbar {

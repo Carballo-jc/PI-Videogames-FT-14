@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import styles from "./styles.module.css";
 
 const GamerCard = ({ gamer }) => {
-  const { name, background_image, released, rating, platforms, slug } = gamer;
+  const { id,name, background_image, released, rating, platforms} = gamer;
   return (
     <div className={styles.card}>
       <img src={background_image} alt={name} />
@@ -11,18 +11,9 @@ const GamerCard = ({ gamer }) => {
       <div>
         <p>Fecha:{released}</p>
         <span>Raiting:{rating}</span>
+          <span> Consolas:{platforms}</span>
       </div>
-      <div>
-        <Link to={`/${slug}`}>Leers mas...</Link>
-        Consolas:
-        {platforms.map((platfom) => (
-          <ul>
-            <li>
-              <p>{platfom}</p>
-            </li>
-          </ul>
-        ))}
-      </div>
+      <Link to={`/videogame/${id}`}>Leers mas...</Link>
     </div>
   );
 };

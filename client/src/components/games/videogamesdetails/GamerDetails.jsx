@@ -1,20 +1,27 @@
 import React, { useEffect } from "react";
-import { useParams } from "react-router";
-import { useSelector, useDispatch } from "react-redux";
-import { getGamerId } from "../../../actions";
+import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getGamerDetail } from "../../../actions";
 
 const GamerDetails = () => {
   const gamer = useSelector((state) => state.onegamer);
   console.log(gamer);
-  const dispatch = useDispatch(gamer.slug);
+  const { name, background_image, rating, released, platforms, description } =
+    gamer;
+  const dispatch = useDispatch();
+  const { id } = useParams();
 
   useEffect(() => {
-    dispatch(getGamerId("portal"));
-  }, []);
+    dispatch(getGamerDetail(Number(id)));
+  }, [dispatch]);
 
   return (
     <div>
-      <h2>detales</h2>
+      <h2>{name}</h2>
+      <img src={background_image} alt="" style={{ maxWidth: 300 }} />
+      <p>Fecha:{released}</p>
+      <p>Raiting:{rating}</p>
+      <span>{description}</span>
     </div>
   );
 };

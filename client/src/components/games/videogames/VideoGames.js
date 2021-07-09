@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
 import { getGamers } from "../../../actions";
 import styles from "./styles.module.css";
 import GamerCard from "../cardvideogames/GamerCard";
@@ -10,7 +9,8 @@ export const VideoGames = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getGamers());
-  }, []);
+  }, [dispatch]);
+
 
   return (
     <div className={styles.content_cards}>
@@ -20,11 +20,6 @@ export const VideoGames = () => {
           ))
         : null}
 
-      <button className={styles.btn_ingresar}>
-        <Link to={"/"} className={styles.link_inicio}>
-          Inicio
-        </Link>
-      </button>
     </div>
   );
 };

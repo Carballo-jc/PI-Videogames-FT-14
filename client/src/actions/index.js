@@ -1,8 +1,8 @@
 import axios from "axios";
-import { API_URL } from "../utils";
+import { API_URL, API_URL_GAMER, API_ID_URL } from "../utils";
 
 //types
-import { GET_GAMERS, SEARCH_GAMER } from "../types";
+import { GET_GAMERS, SEARCH_GAMER, GET_GAMER_ID } from "../types";
 
 export function getGamers() {
   return async (dispatch) => {
@@ -18,14 +18,24 @@ export function getGamers() {
     }
   };
 }
-export function getGamerId (name){
-  return async(dispatch)=>{
-    const resp = await axios.get(`${API_URL}&${name}`);
-    dispatch({
-      type:SEARCH_GAMER,
-      payload:resp
-    })
+export const getGamerDetail = (id) => async (dispatch) => {
+  try {
+    const res = await axios.get(`${API_ID_URL}/${id}`);
+    dispatch({ type: GET_GAMER_ID, payload: res.data });
+  } catch (err) {
+    console.log(err);
+    dispatch({ type: GET_GAMER_ID, payload: [] });
   }
+};
+export function getGamerName(name) {
+  return async (dispatch) => {
+    const resp = await axios.get(`${API_URL_GAMER}&${name}`);
+    console.log(resp);;
+    dispatch({
+      type: SEARCH_GAMER,
+      payload: resp,
+    });
+  };
 }
 
 // export function getGamers() {
