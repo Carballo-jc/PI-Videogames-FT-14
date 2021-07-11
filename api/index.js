@@ -26,6 +26,8 @@ const { URL_BASE, API_KEY } = process.env;
 
 const PORT = process.env.PORT || 3001;
 
+
+
 // Syncing all the models at once.
 conn.sync({ force: true }).then(async () => {
   server.listen(PORT, async () => {

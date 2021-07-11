@@ -6,24 +6,10 @@ const router = require("express").Router();
 
 router.get("/:id", async (req, res) => {
   const gamer = await getGamerById(req.params.id);
-  const {
-    id,
-    name,
-    description,
-    released,
-    rating,
-    background_image,
-    platforms,
-  } = gamer;
+
   res.json({
     msg: "Juego encontrado",
-    id,
-    name,
-    description,
-    released,
-    rating,
-    background_image,
-    platforms,
+     gamer,
   });
 });
 
