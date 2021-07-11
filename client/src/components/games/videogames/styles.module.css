@@ -15,17 +15,15 @@
   color: white;
 }
 .content_cards {
-  background-image: url(../../../assets/images/1.jpg);
+  /* background-color: #151515; */
   background-size: cover;
   background-repeat: no-repeat;
-  height: 100vh;
+  /* height: 100vh; */
   width: 100%;
-  /* max-width: 1200px; */
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  /* margin: auto; */
-  margin-top: 50px;
+  padding-top: 80px;
   overflow: auto;
 }
 .content_cards::-webkit-scrollbar {
@@ -38,7 +36,8 @@
 
 .content_cards::-webkit-scrollbar-thumb {
   background-color: #070D04;
-  /* outline: 1px solid slategrey; */
-  outline: none;
-  border-radius: 10px;
-}
+   outline: 1px solid slategrey; 
+   outline: none;
+  border-radius: 10px; 
+ } 
+

@@ -11,7 +11,6 @@ const SearchGamer = () => {
   };
   const handleSearch = (e) => {
     e.preventDefault();
-    // console.log("se presiono");
     search();
   };
   return (

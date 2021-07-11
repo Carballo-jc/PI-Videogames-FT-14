@@ -1,0 +1,37 @@
+.container{
+    display: flex;
+   max-width:1200px;
+   height:600px;
+   margin-left:auto;
+   margin-right:auto;
+}
+.content_items{
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    margin: 20px;
+    height:100%;
+}
+.img{
+    max-width: 400px;
+    height: 100%;
+}
+.title{
+    color: white;
+    font-size:40px;
+}
+.input_search{
+    cursor: pointer;
+    font-size: 20px;
+    box-shadow: 3px 4px 8px #0864B11A;
+    border: 5px solid #FFFFFF;
+}
+label{
+    color: white;
+}
+.form_group{
+    display:flex;
+    flex-direction: column;
+    margin:10px;
+    
+}

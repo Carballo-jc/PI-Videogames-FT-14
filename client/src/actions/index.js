@@ -21,7 +21,7 @@ export function getGamers() {
 export const getGamerDetail = (id) => async (dispatch) => {
   try {
     const res = await axios.get(`${API_ID_URL}/${id}`);
-    dispatch({ type: GET_GAMER_ID, payload: res.data });
+    dispatch({ type: GET_GAMER_ID, payload: res.data.gamer });
   } catch (err) {
     console.log(err);
     dispatch({ type: GET_GAMER_ID, payload: [] });
@@ -29,11 +29,10 @@ export const getGamerDetail = (id) => async (dispatch) => {
 };
 export function getGamerName(name) {
   return async (dispatch) => {
-    const resp = await axios.get(`${API_URL_GAMER}&${name}`);
-    console.log(resp);;
+    const resp = await axios.get(`${API_URL_GAMER}${name}`);
     dispatch({
       type: SEARCH_GAMER,
-      payload: resp,
+      payload: resp.data.gamerAll,
     });
   };
 }

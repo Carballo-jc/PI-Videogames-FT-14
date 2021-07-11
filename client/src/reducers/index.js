@@ -2,7 +2,7 @@ import { GET_GAMERS, SEARCH_GAMER, GET_GAMER_ID } from "../types";
 
 const initialState = {
   videogames: [],
-  onegamer: {},
+  onegamer: [],
 };
 
 const videoGames = (state = initialState, action) => {
@@ -15,7 +15,7 @@ const videoGames = (state = initialState, action) => {
     case SEARCH_GAMER:
       return {
         ...state,
-        onegamer: action.payload,
+        videogames: action.payload,
       };
     case GET_GAMER_ID:
       return {

@@ -19,7 +19,7 @@ const Navbar = () => {
           </Link>
         </div>
         <div className={styles.nav_link}>
-          <Link to="/" className={styles.link_item}>
+          <Link to="/create" className={styles.link_item}>
             +ADD GAMER
           </Link>
         </div>
