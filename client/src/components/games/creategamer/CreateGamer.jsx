@@ -2,18 +2,26 @@ import React from "react";
 import create from "../../../assets/images/2.jpg";
 import { useForm } from "../../../hooks/useForm";
 import styles from "./styles.module.css";
+import { useDispatch } from "react-redux";
+import { postGamer } from "../../../actions";
 
 const CreateGamer = () => {
   const [formValues, handleInputChange] = useForm({
     name: "",
     description: "",
-    date: "",
+    released: "",
     rating: "",
+    platforms:''
   });
-  const { name, description, date, rating } = formValues;
-  console.log(formValues);
+  const { name, description, released, rating ,platforms} = formValues;
+  const dispatch = useDispatch();
+  const createGamer = () => {
+    console.log(formValues)
+    dispatch(postGamer(formValues));
+  };
   const handleCreate = (e) => {
     e.preventDefault();
+    createGamer();
   };
   return (
     <div className={styles.container}>
@@ -44,13 +52,23 @@ const CreateGamer = () => {
                   Agregue una descrepción
                 </textarea>
               </div>
+              <div className={styles.form_group}>
+                <label>Plataforma</label>
+                <input
+                  type="text"
+                  className={styles.input_search}
+                  name="platforms"
+                  value={platforms}
+                  onChange={handleInputChange}
+                />
+              </div>
             </div>
             <div className={styles.form_group}>
               <label>Fecha de lanzamiento:</label>
               <input
                 type="date"
-                name="date"
-                value={date}
+                name="released"
+                value={released}
                 onChange={handleInputChange}
               />
             </div>

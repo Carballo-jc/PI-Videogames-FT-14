@@ -2,7 +2,7 @@ import axios from "axios";
 import { API_URL, API_URL_GAMER, API_ID_URL } from "../utils";
 
 //types
-import { GET_GAMERS, SEARCH_GAMER, GET_GAMER_ID } from "../types";
+import { GET_GAMERS, SEARCH_GAMER, GET_GAMER_ID, CREATE_GAME } from "../types";
 
 export function getGamers() {
   return async (dispatch) => {
@@ -16,6 +16,16 @@ export function getGamers() {
       console.log("Hubo un Error al Hacer la peticion");
       console.log(error);
     }
+  };
+}
+export function postGamer(values) {
+  return async (dispatch) => {
+    const gamer = await axios.post(API_ID_URL, values);
+    console.log(gamer);
+    dispatch({
+      type: CREATE_GAME,
+      payload: gamer,
+    });
   };
 }
 export const getGamerDetail = (id) => async (dispatch) => {
