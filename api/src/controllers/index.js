@@ -31,7 +31,7 @@ const getGamerAll = async () => {
       };
     });
     console.log("total de juegos", gamerSaves.length);
-    gamerSaves= gamerSaves.concat(data);
+    gamerSaves = [...gamerSaves, ...data];
   }
   return gamerSaves;
 };

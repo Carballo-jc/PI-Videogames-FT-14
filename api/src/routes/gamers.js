@@ -8,12 +8,12 @@ router.get("/", async (req, res) => {
   const { name } = req.query;
   console.log(name);
   if (name !== undefined) {
-    console.log('entro')
+    console.log("entro");
     gamerAll = await getGamer(name);
   } else {
-    const gamerFromApi = await getGamerAll();
     const gamerFromDB = await getGamerFromDB();
-    gamerAll = [...gamerFromApi, ...gamerFromDB];
+    const gamerFromApi = await getGamerAll();
+    gamerAll = [...gamerFromDB,  ...gamerFromApi];
   }
   console.log(gamerAll.length);
   res.json({

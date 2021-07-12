@@ -18,7 +18,7 @@ router.post("/", async (req, res) => {
       msg: "Error: nombre y plataforma son requeridos",
     });
   }
-  const createGender = await Gender.create({ name });
+  const createGender = await Gender.create(name);
   res.json(createGender);
 });
 

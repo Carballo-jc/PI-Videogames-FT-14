@@ -42,12 +42,12 @@ conn.sync({ force: true }).then(async () => {
     const gamerOne = await Videogame.create({
       name: "frefire",
       description: "juego movil",
-      platforms: ["a", "b"],
+      platforms: "xbox",
     });
     const gamerTwo = await Videogame.create({
       name: "frefire2",
       description: "juego movil apuebas",
-      platforms: ["a", "b"],
+      platforms: "play",
     });
     const gender1 = await Gender.create({
       name: "a",

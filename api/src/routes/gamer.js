@@ -13,22 +13,41 @@ router.get("/:id", async (req, res) => {
   });
 });
 
-router.post("/", async (req, res) => {
-  const { name, description, released, rating, platforms, genres } = req.body;
-  if (!name || !description || !platforms) {
-    return res.status(400).json({
-      msg: "Error: name, description and platforms son requeridos",
-    });
+router.post("/", async (req, res,next) => {
+  try {
+    const {  name, description,released, rating,genres, platforms} = req.body;
+    const createGame = await Videogame.create({
+          name,
+          description,
+          released,
+          rating,
+          genres,
+          platforms,
+        });
+        // await createGame.setGenders(genres);
+        return res.json(createGame);
+  } catch (error) {
+    next(error);
+    
   }
-  const createGame = await Videogame.create({
-    name,
-    description,
-    released,
-    rating,
-    platforms,
-  });
-  await createGame.setGenders(genres);
-  return res.json(createGame);
-});
+})
+
+// router.post("/", async (req, res) => {
+//   const { name, description, released, rating, platforms, genres } = req.body;
+//   if (!name || !description || !platforms) {
+//     return res.status(400).json({
+//       msg: "Error: name, description and platforms son requeridos",
+//     });
+//   }
+//   const createGame = await Videogame.create({
+//     name,
+//     description,
+//     released,
+//     rating,
+//     platforms,
+//   });
+//   await createGame.setGenders(genres);
+//   return res.json(createGame);
+// });
 
 module.exports = router;
