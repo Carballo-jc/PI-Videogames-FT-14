@@ -47,6 +47,7 @@ export function getGamerName(name) {
   };
 }
 
+
 // export function getGamers() {
 //   return function (dispatch) {
 //     return fetch(`${API_URL}`)

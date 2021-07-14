@@ -3,49 +3,61 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getGamerDetail } from "../../../actions";
 import styles from "./styles.module.css";
+import parse from 'html-react-parser'
+import { FaStar } from "react-icons/fa";
 
-const GamerDetails = () => {
+const GamerDetails = ({ history }) => {
   const gamer = useSelector((state) => state.onegamer);
-  const { name, background_image, rating, released, platforms, description } =
+  const { name, background_image, rating, released, genres,platforms} =
     gamer;
+    const  description  = gamer ? (parse(`${gamer.description}`)) : undefined;
   const dispatch = useDispatch();
   const { id } = useParams();
 
   useEffect(() => {
     dispatch(getGamerDetail(Number(id)));
-  }, [dispatch]);
-
+  }, [dispatch,id]);
+  //regresar
+    const handleBack = () =>  {
+      history.push(`/videogames`);;
+    };;
   return (
     <div className={styles.card_detalle}>
+      <div className={styles.btn_back}>
+          <button onClick={() => handleBack()}>Back</button>
+        </div>
       <div className={styles.content_detalles}>
+            <h1>{name}</h1>
         <div className={styles.detalles}>
           <div className={styles.img_juego}>
             <img src={background_image} alt="juego" />
           </div>
           <div className={styles.items}>
-            <h1>{name}</h1>
             <div className={styles.date}>
               <p>
                 Fecha:<span> {released}</span>
               </p>
             </div>
             <div className={styles.gender}>
-              <p>
-                Genero:<span> Guerrar</span>
-              </p>
+           <p>Genero:
+           {genres ? genres.map((gender,i) =>(
+              <span key={i}>{gender.name},</span>
+            )):null}
+           </p>
             </div>
             <div className={styles.ranking}>
               <p>Ranking: {rating} </p>
-              <i className="fa fa-star" aria-hidden="true"></i>
-              <i className="fa fa-star" aria-hidden="true"></i>
-              <i className="fa fa-star" aria-hidden="true"></i>
-              <i className="fa fa-star" aria-hidden="true"></i>
-              <i className="fa fa-star" aria-hidden="true"></i>
+              <FaStar  color="yellow"/>
             </div>
             <div className={styles.plataforms}>
-              <p>Platform</p>
+              <p>Plataformas:</p>
               <div className={styles.company}>
-                {/* <img src={ps5} alt="" /> */}
+                {platforms ? platforms.map((element,i) =>{
+                  return(
+                    // <img src={element.platform.image_background} alt={element.name}  />
+                    <span key={i} >{element.platform.name}, </span>
+                  )
+                }): null}
               </div>
             </div>
             <div className={styles.descriptions}>
@@ -53,9 +65,7 @@ const GamerDetails = () => {
             </div>
           </div>
         </div>
-        <div className={styles.btn_back}>
-          <button>Back</button>
-        </div>
+
       </div>
     </div>
   );

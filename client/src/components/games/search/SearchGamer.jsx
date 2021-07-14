@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getGamerName } from "../../../actions";
+import styles from "./styles.module.css";
 
 const SearchGamer = () => {
   const [searchgamer, setSearchGamer] = useState("");
@@ -17,6 +18,7 @@ const SearchGamer = () => {
     <div>
       <form onSubmit={handleSearch}>
         <input
+          className={styles.input}
           type="text"
           name="name"
           autoComplete="off"

@@ -5,23 +5,39 @@ import styles from "./styles.module.css";
 import { useDispatch } from "react-redux";
 import { postGamer } from "../../../actions";
 
-const CreateGamer = () => {
+const consolas = [
+  {
+    value: "play station",
+    name: "Play Station",
+  },
+  {
+    value: "xbox",
+    name: "Xbox 360",
+  },
+  {
+    value: "wii",
+    name: "Wii",
+  },
+];
+
+const CreateGamer = (props) => {
   const [formValues, handleInputChange] = useForm({
     name: "",
     description: "",
     released: "",
     rating: "",
-    platforms:''
+    platforms: "",
   });
-  const { name, description, released, rating ,platforms} = formValues;
+  const { name, description, released, rating, platforms } = formValues;
   const dispatch = useDispatch();
   const createGamer = () => {
-    console.log(formValues)
+    console.log(formValues);
     dispatch(postGamer(formValues));
   };
   const handleCreate = (e) => {
     e.preventDefault();
     createGamer();
+    props.history.push('/videogames')
   };
   return (
     <div className={styles.container}>
@@ -51,6 +67,17 @@ const CreateGamer = () => {
                 >
                   Agregue una descrepción
                 </textarea>
+              </div>
+              <div className={styles.form_group}>
+                <select value="" name="consolas">
+                  {consolas.map((platform, i) => {
+                    return (
+                      <option key={i} value={platform.value[i]}>
+                        {platform.name}
+                      </option>
+                    );
+                  })}
+                </select>
               </div>
               <div className={styles.form_group}>
                 <label>Plataforma</label>

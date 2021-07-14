@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import styles from "./styles.module.css";
 
 const GamerCard = ({ gamer }) => {
-  const { id,name, background_image, released, rating, platforms} = gamer;
+  const { id, name, background_image } = gamer;
 
   return (
     <div className={styles.card}>
