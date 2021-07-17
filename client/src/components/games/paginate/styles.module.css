@@ -1,0 +1,14 @@
+.btn_container{
+    display: flex;
+    align-items:center;
+}
+
+
+.btn{
+    background-color:#3786FC;
+    width: 40px;
+    height:30px;
+    border: none;
+    margin: 2px;
+    color: white;
+}

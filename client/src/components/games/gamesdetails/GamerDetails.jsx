@@ -24,10 +24,10 @@ const GamerDetails = ({ history }) => {
   return (
     <div className={styles.card_detalle}>
       <div className={styles.btn_back}>
-          <button onClick={() => handleBack()}>Back</button>
-        </div>
+        <button onClick={() => handleBack()}>Back</button>
+      </div>
       <div className={styles.content_detalles}>
-            <h1>{name}</h1>
+        <h1>{name}</h1>
         <div className={styles.detalles}>
           <div className={styles.img_juego}>
             <img src={background_image} alt="juego" />
@@ -39,11 +39,14 @@ const GamerDetails = ({ history }) => {
               </p>
             </div>
             <div className={styles.gender}>
-           <p>Genero:
-           {genres ? genres.map((gender,i) =>(
-              <span key={i}>{gender.name},</span>
-            )):null}
-           </p>
+              <p>
+                Genero:
+                {genres
+                  ? genres.map((gender, i) => (
+                      <span key={i}>{gender.name},</span>
+                    ))
+                  : null}
+              </p>
             </div>
             <div className={styles.ranking}>
               <p>Ranking: {rating} </p>
@@ -52,12 +55,14 @@ const GamerDetails = ({ history }) => {
             <div className={styles.plataforms}>
               <p>Plataformas:</p>
               <div className={styles.company}>
-                {platforms ? platforms.map((element,i) =>{
-                  return(
-                    // <img src={element.platform.image_background} alt={element.name}  />
-                    <span key={i} >{element.platform.name}, </span>
-                  )
-                }): null}
+                {platforms
+                  ? platforms.map((element, i) => {
+                      return (
+                        // <img src={element.platform.image_background} alt={element.name}  />
+                        <span key={i}>{element.platform.name}, </span>
+                      );
+                    })
+                  : null}
               </div>
             </div>
             <div className={styles.descriptions}>
@@ -65,7 +70,6 @@ const GamerDetails = ({ history }) => {
             </div>
           </div>
         </div>
-
       </div>
     </div>
   );

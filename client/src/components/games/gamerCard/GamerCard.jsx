@@ -9,7 +9,6 @@ const GamerCard = ({ gamer }) => {
     <div className={styles.card}>
       <img src={background_image} alt={name} />
       <h2>{name}</h2>
-      <div></div>
       <Link to={`/videogame/${id}`}>Leers mas...</Link>
     </div>
   );

@@ -1,13 +1,21 @@
 import axios from "axios";
-import { API_URL, API_URL_GAMER, API_ID_URL } from "../utils";
+import { API_URL, API_URL_GAMER, API_ID_URL, API_GENDER_URL } from "../utils";
 
 //types
-import { GET_GAMERS, SEARCH_GAMER, GET_GAMER_ID, CREATE_GAME } from "../types";
+import {
+  GET_GAMERS,
+  SEARCH_GAMER,
+  GET_GAMER_ID,
+  CREATE_GAME,
+  GAMER_ORDER,
+  GAMER_GENDER,
+} from "../types";
 
 export function getGamers() {
   return async (dispatch) => {
     try {
       const resp = await axios.get(API_URL);
+      console.log(resp);
       dispatch({
         type: GET_GAMERS,
         payload: resp.data.gamerAll,
@@ -46,14 +54,23 @@ export function getGamerName(name) {
     });
   };
 }
+export function getOrder(filter) {
+  return (dispatch) => {
+    dispatch({
+      type: GAMER_ORDER,
+      payload: filter,
+    });
+  };
+}
 
+export function getGendersGamer() {
+  return async (dispatch) => {
+    // const genderGamer = await axios.get(`${API_GENDER_URL}`);
+    // console.log(genderGamer.data.GamerGenderAll);
+    dispatch({
+      type: GAMER_GENDER,
+      payload: "action",
+    });
+  };
+}
 
-// export function getGamers() {
-//   return function (dispatch) {
-//     return fetch(`${API_URL}`)
-//       .then((response) => response.json())
-//       .then((json) => {
-//         dispatch({ type: GET_GAMERS, payload: json });
-//       });
-//   };
-// }

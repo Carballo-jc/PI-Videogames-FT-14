@@ -2,8 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./styles.module.css";
 import SearchGamer from "../games/search/SearchGamer";
+import Filters from "../filters/Filters";
+
 
 const Navbar = () => {
+
   return (
     <div className={styles.navbar}>
       <div className={styles.navbar_logo}>
@@ -11,6 +14,7 @@ const Navbar = () => {
           <h2>Video Games App</h2>
         </Link>
       </div>
+      <Filters />
       <div className={styles.navbar_menu}>
         <SearchGamer />
         <div className={styles.nav_link}>
