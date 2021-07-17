@@ -30,7 +30,7 @@ const videoGames = (state = initialState, action) => {
       case CREATE_GAME:
         return {
           ...state,
-          gamerViews: action.payload
+          gamerViews: [...state.gamerViews, action.payload],
         };
         case GAMER_ORDER:
           return {
@@ -38,10 +38,12 @@ const videoGames = (state = initialState, action) => {
             gamerViews:[...getMoviesOrder(action.payload, state.gamerViews)]
           };
           case GAMER_GENDER:
-            return{
+            return {
               ...state,
-              // gamerViews:[...getGamerGenders(action.payload, state.gamerViews)]
-            }
+              gamerViews: [
+                ...getGamerGenders(action.payload, state.gamerViews),
+              ],
+            };
     default:
       return state;
   }

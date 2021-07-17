@@ -13,7 +13,7 @@ const Filters = () => {
     e.preventDefault();
     dispatch(getOrder(filter));
   };
-  // dispatch(getGendersGamer("action"));
+  // dispatch(getGendersGamer("action",));
   return (
     <form onSubmit={gamerOder}>
       <select
@@ -21,13 +21,13 @@ const Filters = () => {
         name="filter"
         onChange={(e) => handleFilter(e)}
       >
-        <option>-- Filtrar--</option>
+        <option>--Oder Alfabetico--</option>
         <option value="A-Z">Orden A-Z</option>
         <option value="action">genero</option>
         <option value="Z-A">Orden Z-A</option>
       </select>
       <button type="submit" className="">
-        buscar
+        Ordenar
       </button>
     </form>
   );

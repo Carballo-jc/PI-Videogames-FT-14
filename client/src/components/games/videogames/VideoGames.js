@@ -31,27 +31,23 @@ export const VideoGames = () => {
   //   dispatch(getGamers());
   // }
   useEffect(() => {
-    if (gamers.length === 0) {
+    if (gamers?.length === 0) {
       dispatch(getGamers());
     }
-  },[gamers]);
+  },[gamers,dispatch]);
 
 
   return (
     <div className={styles.container}>
       <div className={styles.content_cards}>
-        {gamers.length === 0 ?(
+        {gamers?.length === 0 ? (
           <Loading />
         ) : (
-          gamers?.map((gamer) => (
-            <GamerCard key={gamer.id} gamer={gamer} />
-          )).slice(min,max)
+          gamers?.map((gamer) =>
+           <GamerCard key={gamer.id} gamer={gamer} />).slice(min, max)
         )}
       </div>
-        <Paginate
-        pages={pages}
-        handleClick={handleClick}
-        />
+      <Paginate pages={pages} handleClick={handleClick} />
     </div>
   );
 };;;

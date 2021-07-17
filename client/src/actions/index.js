@@ -11,11 +11,9 @@ import {
   GAMER_GENDER,
 } from "../types";
 
-export function getGamers() {
-  return async (dispatch) => {
+export const  getGamers =() =>async(dispatch)=>{
     try {
       const resp = await axios.get(API_URL);
-      console.log(resp);
       dispatch({
         type: GET_GAMERS,
         payload: resp.data.gamerAll,
@@ -24,17 +22,20 @@ export function getGamers() {
       console.log("Hubo un Error al Hacer la peticion");
       console.log(error);
     }
-  };
+  
 }
-export function postGamer(values) {
-  return async (dispatch) => {
+export const  postGamer=(values) => async(dispatch)=>{
+   try {
     const gamer = await axios.post(API_ID_URL, values);
-    console.log(gamer);
+    console.log('Juego Creado:',gamer.data);
     dispatch({
       type: CREATE_GAME,
       payload: gamer,
     });
-  };
+   } catch (error) {
+     console.log(error);
+     console.log('Hubo un error al crear el videoguego')
+   }
 }
 export const getGamerDetail = (id) => async (dispatch) => {
   try {

@@ -13,11 +13,12 @@ const CreateGamer = (props) => {
     released: "",
     rating: "",
     platforms: "",
+    image: "",
   });
-  const { name, description, released, rating, platforms } = formValues;
+  const { name, description, released, rating, platforms, image } = formValues;
   const dispatch = useDispatch();
   const createGamer = () => {
-    // console.log(formValues);
+    console.log(formValues);
     dispatch(postGamer(formValues));
   };
   const handleCreate = (e) => {
@@ -69,6 +70,16 @@ const CreateGamer = (props) => {
                   className={styles.input_search}
                   name="platforms"
                   value={platforms}
+                  onChange={handleInputChange}
+                />
+              </div>
+              <div className={styles.form_group}>
+                <label>Agregue una imagen:</label>
+                <input
+                  type="url"
+                  className={styles.input_search}
+                  name="image"
+                  value={image}
                   onChange={handleInputChange}
                 />
               </div>
