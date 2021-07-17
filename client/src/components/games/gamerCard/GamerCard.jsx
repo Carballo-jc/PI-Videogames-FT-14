@@ -9,12 +9,13 @@ const GamerCard = ({ gamer }) => {
       <div className={styles.card}>
         <img src={background_image} alt={name} />
         <h2>{name}</h2>
-        <p>Genero:
+        <p>
+          Genero:
           {genres?.map((gender) => (
-            <span key={gender.id}>{gender.name}, </span>
+            <span key={gender.id}>{gender},</span>
           ))}
         </p>
-           <Link to={`/videogame/${id}`}>Leers mas...</Link>
+        <Link to={`/videogame/${id}`}>Leers mas...</Link>
       </div>
     </div>
   );
