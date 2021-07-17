@@ -23,6 +23,7 @@ module.exports = (sequelize) => {
         //   values: ['a','b']
         // }))
       },
+      background_image: { type: DataTypes.STRING },
     },
     { timestamps: false }
   );

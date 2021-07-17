@@ -63,6 +63,7 @@ const getGamerFromDB = async () => {
     include: {
       model: Gender,
       attributes: ["name"],
+      // attributes: ["gender"],
     },
   });
 

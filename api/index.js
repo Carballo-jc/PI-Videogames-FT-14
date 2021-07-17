@@ -43,11 +43,15 @@ conn.sync({ force: true }).then(async () => {
       name: "frefire",
       description: "juego movil",
       platforms: "xbox",
+      background_image:
+        "https://phantom-marca.unidadeditorial.es/cdecffb1a8da6f48222d54dd97cb3c40/resize/1320/f/jpg/assets/multimedia/imagenes/2021/03/27/16168527358201.jpg",
     });
     const gamerTwo = await Videogame.create({
       name: "frefire2",
       description: "juego movil apuebas",
       platforms: "play",
+      background_image:
+        "https://depor.com/resizer/jEVIIBcmHSfe-vlAU-m-uzxQycM=/580x330/smart/filters:format(jpeg):quality(75)/cloudfront-us-east-1.images.arcpublishing.com/elcomercio/EL4BGOSECFBUHKIEVLBMAZJS4M.jpg",
     });
     const gender1 = await Gender.create({
       name: "a",
