@@ -17,8 +17,16 @@ const getGamerAll = async () => {
       next = getFromApi.data.next;
     };
     data = getFromApi.data.results.map((gamer) => {
-      const { id, name, background_image, released, rating, platforms, slug } =
-        gamer;
+      const {
+        id,
+        name,
+        background_image,
+        released,
+        rating,
+        platforms,
+        slug,
+        genres,
+      } = gamer;
 
       return {
         id,
@@ -27,6 +35,7 @@ const getGamerAll = async () => {
         released,
         rating,
         slug,
+        genres,
         platforms: platforms.map((consola) => consola.platform.name),
       };
     });
@@ -63,7 +72,6 @@ const getGamerFromDB = async () => {
       id: "DB_ID:" + result.dataValues.id,
     };
   });
-
   return videogamersFromDB;
 };
 //obtener por genero
