@@ -35,8 +35,8 @@ const getGamerAll = async () => {
         released,
         rating,
         slug,
-        genres,
-        platforms: platforms.map((consola) => consola.platform.name),
+        genres: genres?.map((genre) => genre.name),
+        platforms: platforms?.map((consola) => consola.platform.name),
       };
     });
     console.log("total de juegos", gamerSaves.length);
@@ -51,11 +51,42 @@ const getGamerById = (id) => {
   return gamer_id;
 }
 //obtener por juego
-const getGamer = (name) => {
-  const gamer_url = axios
-    .get(`${URL_BASE}games?${API_KEY}&search=${name}`)
-    .then((gamer) => gamer.data.results);
-  return gamer_url;
+const getGamer = async (name) => {
+  let gamerAllSearch = [];
+  let gamer_url, next;
+  for (let page = 1; page <= 5; page++) {
+    if (page === 1) {
+      gamer_url = await axios.get(`${URL_BASE}games?${API_KEY}&search=${name}`);
+      next = gamer_url.data.next;
+    } else {
+      gamer_url = await axios.get(`${next}`);
+      next = gamer_url.data.next;
+    }
+    let gamerApi = gamer_url.data.results.map((gamer) => {
+      const {
+        id,
+        name,
+        background_image,
+        released,
+        rating,
+        platforms,
+        slug,
+        genres,
+      } = gamer;
+      return {
+        id,
+        name,
+        background_image,
+        released,
+        rating,
+        slug,
+        genres: genres?.map((genre) => genre.name),
+        platforms: platforms?.map((consola) => consola.platform.name),
+      };
+    });
+    gamerAllSearch = gamerAllSearch.concat(gamerApi);
+  }
+  return gamerAllSearch;
 };
 //desde la base de datos
 const getGamerFromDB = async () => {
@@ -68,9 +99,17 @@ const getGamerFromDB = async () => {
   });
 
   const videogamersFromDB = gamerDB.map((result) => {
+
+    const { name, id, background_image, released, rating, platforms, geders } =
+      result.dataValues;
     return {
-      ...result.dataValues,
-      id: "DB_ID:" + result.dataValues.id,
+      id: "DB_ID:" + id,
+      name,
+      background_image,
+      released,
+      rating,
+      platforms,
+      geders,
     };
   });
   return videogamersFromDB;
