@@ -19,10 +19,8 @@ module.exports = (sequelize) => {
       platforms: {
         type: DataTypes.STRING,
         allowNull: false,
-        //   type: DataTypes.ARRAY(DataTypes.ENUM({
-        //   values: ['a','b']
-        // }))
       },
+    
       background_image: { type: DataTypes.STRING },
     },
     { timestamps: false }
