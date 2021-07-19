@@ -17,11 +17,11 @@ const Filters = () => {
   return (
     <form onSubmit={gamerOder}>
       <select
-        style={{ width: 100 }}
+        style={{ width: 120 }}
         name="filter"
         onChange={(e) => handleFilter(e)}
       >
-        <option>--Oder Alfabetico--</option>
+        <option>Oder Alfabetico</option>
         <option value="A-Z">Orden A-Z</option>
         <option value="action">genero</option>
         <option value="Z-A">Orden Z-A</option>

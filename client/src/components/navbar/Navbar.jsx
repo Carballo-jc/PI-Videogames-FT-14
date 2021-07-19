@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import styles from "./styles.module.css";
 import SearchGamer from "../games/search/SearchGamer";
 import Filters from "../filters/Filters";
+import FilterOrigin from "../filters/FilterOrigin";
 
 
 const Navbar = () => {
@@ -15,6 +16,7 @@ const Navbar = () => {
         </Link>
       </div>
       <Filters />
+      <FilterOrigin />
       <div className={styles.navbar_menu}>
         <SearchGamer />
         <div className={styles.nav_link}>

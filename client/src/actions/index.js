@@ -9,6 +9,7 @@ import {
   CREATE_GAME,
   GAMER_ORDER,
   GAMER_GENDER,
+  GAMER_ORIGIN
 } from "../types";
 
 export const  getGamers =() =>async(dispatch)=>{
@@ -73,5 +74,14 @@ export function getGendersGamer() {
       payload: "action",
     });
   };
+}
+
+export function setGamerOrigin(origin){
+    return (dispatch) =>{
+      dispatch({
+        type:GAMER_ORIGIN,
+        payload:origin
+      })
+    }
 }
 
