@@ -4,6 +4,7 @@ import styles from "./styles.module.css";
 import SearchGamer from "../games/search/SearchGamer";
 import Filters from "../filters/Filters";
 import FilterOrigin from "../filters/FilterOrigin";
+import FilterGender from "../filters/FilterGender";
 
 
 const Navbar = () => {
@@ -17,6 +18,7 @@ const Navbar = () => {
       </div>
       <Filters />
       <FilterOrigin />
+      <FilterGender />
       <div className={styles.navbar_menu}>
         <SearchGamer />
         <div className={styles.nav_link}>

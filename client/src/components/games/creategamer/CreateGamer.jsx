@@ -1,21 +1,36 @@
-import React from "react";
+import React,{useEffect,useState} from "react";
 import create from "../../../assets/images/2.jpg";
 import { useForm } from "../../../hooks/useForm";
 import styles from "./styles.module.css";
-import { useDispatch } from "react-redux";
-import { postGamer } from "../../../actions";
+import { useDispatch, useSelector } from "react-redux";
+import { postGamer,getGendersGamer } from "../../../actions";
+import styled from "styled-components";
+
+const Error = styled.div`
+background-color: red;
+color:white;
+padding:1rem;
+width:100%;
+text-align:center;
 
 
+`;
 const CreateGamer = (props) => {
+const genders = useSelector(state => state.gamergender);
+useEffect(() => {
+dispatch(getGendersGamer())
+}, [getGendersGamer]);
+const [error, setError] = useState(false)
   const [formValues, handleInputChange] = useForm({
     name: "",
     description: "",
     released: "",
     rating: "",
     platforms: "",
-    image: "",
+    background_image: "",
+    genres:''
   });
-  const { name, description, released, rating, platforms, image } = formValues;
+  const { name, description, released, rating, platforms, background_image,genres } = formValues;
   const dispatch = useDispatch();
   const createGamer = () => {
     console.log(formValues);
@@ -33,6 +48,7 @@ const CreateGamer = (props) => {
         <div>
           <h3 className={styles.title}>Create Gamer!</h3>
           <form onSubmit={handleCreate}>
+            {error ? <Error>Todos los campos son Obligatorios</Error> :null}
             <div>
               <div className={styles.form_group}>
                 <label>Nombre del Juego</label>
@@ -56,11 +72,15 @@ const CreateGamer = (props) => {
                 </textarea>
               </div>
               <div className={styles.form_group}>
-                <select>
-                  <option></option>
-                  <option>Play Station</option>
-                  <option>Wii</option>
-                  <option>Xbox</option>
+                <label htmlFor="">Genero:</label>
+                <select name='genres'  onChange={handleInputChange}>
+                 {
+                   genders?.map( gender =>{
+                     return(
+                       <option  value={gender.name} key={gender.id}>{gender.name}</option>
+                     )
+                   })
+                 }
                 </select>
               </div>
               <div className={styles.form_group}>
@@ -78,8 +98,8 @@ const CreateGamer = (props) => {
                 <input
                   type="url"
                   className={styles.input_search}
-                  name="image"
-                  value={image}
+                  name="background_image"
+                  value={background_image}
                   onChange={handleInputChange}
                 />
               </div>

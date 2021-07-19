@@ -12,14 +12,11 @@ export const VideoGames = () => {
   const [max, setMax] = useState(20);
   const dispatch = useDispatch();
 
-
-
   let totalPages = Math.ceil(gamers.length / 20);
   let pages = [];
   for (let index = 1; index <= totalPages; index++) {
     pages.push(index);
   }
-
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -27,15 +24,11 @@ export const VideoGames = () => {
     setMax(e.target.id * 20);
   };
 
-  // if (gamers.length === 0) {
-  //   dispatch(getGamers());
-  // }
   useEffect(() => {
     if (gamers?.length === 0) {
       dispatch(getGamers());
     }
   },[gamers,dispatch]);
-
 
   return (
     <div className={styles.container}>

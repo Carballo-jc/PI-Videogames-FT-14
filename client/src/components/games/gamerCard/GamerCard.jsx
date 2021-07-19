@@ -12,7 +12,7 @@ const GamerCard = ({ gamer }) => {
         <p>
           Genero:
           {genres?.map((gender) => (
-            <span key={gender.id}>{gender},</span>
+            <span key={gender}>{gender},</span>
           ))}
         </p>
         <Link to={`/videogame/${id}`}>Leers mas...</Link>

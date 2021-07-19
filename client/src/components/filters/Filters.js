@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getOrder, getGendersGamer } from "../../actions/index";
 
@@ -9,13 +9,14 @@ const Filters = () => {
     setFilter(e.target.value);
   };
   const dispatch = useDispatch();
-  const gamerOder = (e) => {
-    e.preventDefault();
+  const gamerOder = () => {
     dispatch(getOrder(filter));
   };
-  // dispatch(getGendersGamer("action",));
+  useEffect(() => {
+    gamerOder();
+  }, [gamerOder]);
   return (
-    <form onSubmit={gamerOder}>
+    <form>
       <select
         style={{ width: 120 }}
         name="filter"
@@ -23,12 +24,8 @@ const Filters = () => {
       >
         <option>Oder Alfabetico</option>
         <option value="A-Z">Orden A-Z</option>
-        <option value="action">genero</option>
         <option value="Z-A">Orden Z-A</option>
       </select>
-      <button type="submit" className="">
-        Ordenar
-      </button>
     </form>
   );
 };

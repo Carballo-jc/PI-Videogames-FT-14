@@ -6,6 +6,7 @@ import getGamerOrigin from "../selectores/getGamerOrigin";
 
 const initialState = {
   gamers:[],
+  gamergender:[],
   onegamer: [],
   gamerViews:[]
 };
@@ -17,7 +18,6 @@ const videoGames = (state = initialState, action) => {
         ...state,
         gamers: action.payload,
         gamerViews: action.payload,
-        // gamerViews:action.payload,
         };
       
     case SEARCH_GAMER:
@@ -33,19 +33,17 @@ const videoGames = (state = initialState, action) => {
       case CREATE_GAME:
         return {
           ...state,
-          gamerViews: [...state.gamerViews, action.payload],
+          gamerViews: state.gamerViews.concat(action.payload)
         };
         case GAMER_ORDER:
           return {
             ...state,
-            gamerViews:[...getMoviesOrder(action.payload, state.gamerViews)]
+            gamerViews:[...getMoviesOrder(action.payload, state.gamers)]
           };
           case GAMER_GENDER:
             return {
               ...state,
-              gamerViews: [
-                ...getGamerGenders(action.payload, state.gamerViews),
-              ],
+              gamergender:action.payload
             };
             case GAMER_ORIGIN:
               return{

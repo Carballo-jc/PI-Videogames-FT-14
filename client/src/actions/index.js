@@ -67,11 +67,10 @@ export function getOrder(filter) {
 
 export function getGendersGamer() {
   return async (dispatch) => {
-    // const genderGamer = await axios.get(`${API_GENDER_URL}`);
-    // console.log(genderGamer.data.GamerGenderAll);
+    const genderGamer = await axios.get(`${API_GENDER_URL}`);
     dispatch({
       type: GAMER_GENDER,
-      payload: "action",
+      payload: genderGamer.data.GamerGenderAll,
     });
   };
 }

@@ -7,7 +7,7 @@ import parse from "html-react-parser";
 import { FaStar } from "react-icons/fa";
 import Loading from "../loading/Loading";
 
-const GamerDetails = ({ history }) => {
+const GamerDetails = (props) => {
   const gamer = useSelector((state) => state.onegamer);
   const { name, background_image, rating, released, genres, platforms } = gamer;
   const description = gamer ? parse(`${gamer.description}`) : undefined;
@@ -19,7 +19,7 @@ const GamerDetails = ({ history }) => {
   }, [dispatch, id]);
   //regresar
   const handleBack = () => {
-    history.push(`/videogames`);
+    props.history.push(`/videogames`);
   };
   return (
     <div className={styles.card_detalle}>
@@ -62,7 +62,6 @@ const GamerDetails = ({ history }) => {
                     {platforms
                       ? platforms.map((element, i) => {
                           return (
-                            // <img src={element.platform.image_background} alt={element.name}  />
                             <span key={i}>{element.platform.name}, </span>
                           );
                         })

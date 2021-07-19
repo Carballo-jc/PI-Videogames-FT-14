@@ -16,6 +16,8 @@ export const getMoviesOrder = (order, array) => {
           return -1;
         }
       });
+      case "ALL":
+        return array;
 
     default:
       return array;
