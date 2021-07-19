@@ -12,6 +12,7 @@ const basename = path.basename(__filename);
 
 const modelDefiners = [];
 
+
 // Leemos todos los archivos de la carpeta Models, los requerimos y agregamos al arreglo modelDefiners
 fs.readdirSync(path.join(__dirname, '/models'))
   .filter((file) => (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js'))
@@ -33,8 +34,8 @@ const { Videogame, Gender } = sequelize.models;
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
 
-Videogame.belongsToMany(Gender, { through: "videogame_gender" });
-Gender.belongsToMany(Videogame, { through: "videogame_gender" });
+Videogame.belongsToMany(Gender, { through: "gamerXgender" });
+Gender.belongsToMany(Videogame, { through: "gamerXgender" });
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
