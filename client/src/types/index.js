@@ -6,3 +6,4 @@ export const CREATE_GAME = "CREATE_GAME";
 export const GAMER_ORDER = "GAMER_ORDER";
 export const GAMER_GENDER = "GAMER_GENDER";
 export const GAMER_ORIGIN = "GAMER_ORIGIN";
+export const GENDER_GAME = "GENDER_GAME";

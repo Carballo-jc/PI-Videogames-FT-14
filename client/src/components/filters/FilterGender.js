@@ -1,15 +1,16 @@
 import React,{useState,useEffect} from "react";
-import { useDispatch } from "react-redux";
-import { getGendersGamer } from "../../actions";
+import { useDispatch,useSelector } from "react-redux";
+import { setGenderGamers } from "../../actions";
 
 const FilterGender = () => {
+ const genders = useSelector(state => state.gamergender)
      const [gender,setGender] = useState('');
      const dispatch = useDispatch();
      const handleFilter = (e) => {
         setGender(e.target.value);
       };
       const getGender = () =>{
-        dispatch(getGendersGamer(gender));
+        dispatch(setGenderGamers(gender));
       }
       useEffect(() => {
       getGender()
@@ -21,8 +22,12 @@ const FilterGender = () => {
         name="filter"
         onChange={(e) => handleFilter(e)}
       >
-        <option value="ACTION">Action</option>
-        <option value="AVENTURA">Aventura</option>
+        {genders?.map(gende =>{
+          return(
+
+            <option value={gende.name}>{gende.name}</option>
+          )
+        })}
       </select>
     </div>
   );

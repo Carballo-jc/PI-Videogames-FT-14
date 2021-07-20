@@ -6,7 +6,6 @@ import styles from "./styles.module.css";
 import parse from "html-react-parser";
 import { FaStar } from "react-icons/fa";
 import Loading from "../loading/Loading";
-import { platform } from "node:os";
 
 const GamerDetails = (props) => {
   const gamer = useSelector((state) => state.onegamer);
@@ -60,6 +59,7 @@ const GamerDetails = (props) => {
                 <div className={styles.plataforms}>
                   <p>Plataformas:</p>
                   <div className={styles.company}>
+
                     {/* {platforms 
                       ? platforms?.map((element, i) => {
                           return (
@@ -70,7 +70,7 @@ const GamerDetails = (props) => {
                   </div>
                 </div>
                 <div className={styles.descriptions}>
-                  <p>{description}</p>
+                  <p>Descripción: {description}</p>
                 </div>
               </div>
             </div>
