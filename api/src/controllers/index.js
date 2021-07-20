@@ -61,18 +61,16 @@ const getGamerAll = async () => {
 // }
 
 const getGamerById = async(id) =>{
-  console.log(id)
   let gamer_id;
   try {
     gamer_id = await axios.get(`${URL_BASE}games/${id}?${API_KEY}`);
     gamer_id= gamer_id.data;
   } catch (error) {
-    console.log(id)
     gamer_id = await Videogame.findOne({
         where:{id:id},
         include:[Gender]
       });
-      gamer_id = gamer_id.dataValues;
+      // gamer_id = gamer_id;
     }
     return gamer_id;
 }
