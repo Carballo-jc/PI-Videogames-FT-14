@@ -45,10 +45,36 @@ const getGamerAll = async () => {
   return gamerSaves;
 };
 //por id
-const getGamerById = (id) => {
-  const gamer_id = axios.get(`${URL_BASE}games/${id}?${API_KEY}`)
-  .then(gamer => gamer.data);
-  return gamer_id;
+// const getGamerById = async (id) => {
+//   let gamer_id;
+//   if( id === "string"){
+//  gamer_id = await Videogame.findOne({
+//   where:{id:id},
+//   include:[Gender]
+// })
+//   }else{
+//    gamer_id =  axios.get(`${URL_BASE}games/${id}?${API_KEY}`)
+//    .then(gamer => gamer.data);
+//   // console.log(gamer_id)
+//   }
+//   return gamer_id;
+// }
+
+const getGamerById = async(id) =>{
+  console.log(id)
+  let gamer_id;
+  try {
+    gamer_id = await axios.get(`${URL_BASE}games/${id}?${API_KEY}`);
+    gamer_id= gamer_id.data;
+  } catch (error) {
+    console.log(id)
+    gamer_id = await Videogame.findOne({
+        where:{id:id},
+        include:[Gender]
+      });
+      gamer_id = gamer_id.dataValues;
+    }
+    return gamer_id;
 }
 //obtener por juego
 const getGamer = async (name) => {
@@ -100,16 +126,16 @@ const getGamerFromDB = async () => {
 
   const videogamersFromDB = gamerDB.map((result) => {
 
-    const { name, id, background_image, released, rating, platforms, geders } =
+    const { name, id, background_image, released, rating, platforms, genders } =
       result.dataValues;
     return {
-      id: "DB_ID:" + id,
+      id,
       name,
       background_image,
       released,
       rating,
       platforms,
-      geders,
+      genders,
     };
   });
   return videogamersFromDB;

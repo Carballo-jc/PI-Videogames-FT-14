@@ -10,11 +10,11 @@ const { Videogame } = require("../db");
 const router = require("express").Router();
 
 router.get("/:id", async (req, res) => {
-  const gamer = await getGamerById(req.params.id);
-
+  let id = req.params.id;
+  const gamer = await getGamerById(id);
   res.json({
     msg: "Juego encontrado",
-     gamer,
+     gamer
   });
 });
 
