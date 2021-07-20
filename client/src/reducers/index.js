@@ -33,7 +33,7 @@ const videoGames = (state = initialState, action) => {
       case CREATE_GAME:
         return {
           ...state,
-          gamerViews: state.gamerViews.concat(action.payload)
+          gamerViews: [...state.gamerViews,action.payload]
         };
         case GAMER_ORDER:
           return {

@@ -6,6 +6,7 @@ import styles from "./styles.module.css";
 import parse from "html-react-parser";
 import { FaStar } from "react-icons/fa";
 import Loading from "../loading/Loading";
+import { platform } from "node:os";
 
 const GamerDetails = (props) => {
   const gamer = useSelector((state) => state.onegamer);
@@ -15,7 +16,7 @@ const GamerDetails = (props) => {
   const { id } = useParams();
 
   useEffect(() => {
-    dispatch(getGamerDetail(Number(id)));
+    dispatch(getGamerDetail(id));
   }, [dispatch, id]);
   //regresar
   const handleBack = () => {
@@ -59,13 +60,13 @@ const GamerDetails = (props) => {
                 <div className={styles.plataforms}>
                   <p>Plataformas:</p>
                   <div className={styles.company}>
-                    {platforms
-                      ? platforms.map((element, i) => {
+                    {/* {platforms 
+                      ? platforms?.map((element, i) => {
                           return (
                             <span key={i}>{element.platform.name}, </span>
                           );
                         })
-                      : null}
+                      : null} */}
                   </div>
                 </div>
                 <div className={styles.descriptions}>

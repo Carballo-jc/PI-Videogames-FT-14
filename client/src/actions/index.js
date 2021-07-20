@@ -28,10 +28,11 @@ export const  getGamers =() =>async(dispatch)=>{
 export const  postGamer=(values) => async(dispatch)=>{
    try {
     const gamer = await axios.post(API_ID_URL, values);
+
     console.log('Juego Creado:',gamer.data);
     dispatch({
       type: CREATE_GAME,
-      payload: gamer,
+      payload: gamer.data
     });
    } catch (error) {
      console.log(error);

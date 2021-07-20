@@ -28,7 +28,7 @@ export const VideoGames = () => {
     if (gamers?.length === 0) {
       dispatch(getGamers());
     }
-  },[gamers,dispatch]);
+  },[]);
 
   return (
     <div className={styles.container}>
