@@ -31,7 +31,7 @@ export const VideoGames = () => {
     };
       // dispatch(getGamers());
     dispatch(getGendersGamer());
-  },[]);
+  },[dispatch]);
 
   return (
     <div className={styles.container}>

@@ -5,19 +5,17 @@ import styles from "./styles.module.css";
 const GamerCard = ({ gamer }) => {
   const { id, name, background_image, genres } = gamer;
   return (
-    <div>
       <div className={styles.card}>
         <img src={background_image} alt={name} />
         <h2>{name}</h2>
-        <p>
+        <div>
           Genero:
-          {genres?.map((gender) => (
-            <span key={gender}>{gender},</span>
+          {genres?.map((gender,idx) => (
+            <span key={idx}>{gender},</span>
           ))}
-        </p>
+        </div>
         <Link to={`/videogame/${id}`}>Leers mas...</Link>
       </div>
-    </div>
   );
 };
 

@@ -18,6 +18,10 @@ const FilterGender = () => {
       //   getGender()
 
       // }
+      // useEffect(() => {
+      //   dispatch(getGendersGamer())
+      //   }, []);
+
       useEffect(() => {
           getGender()
       }, [getGender,gender])
@@ -28,10 +32,10 @@ const FilterGender = () => {
         name="filter"
         onChange={(e) => handleFilter(e)}
       >
-        {genders?.map((gende,i) =>{
+        {genders?.map((gende,id) =>{
           return(
 
-            <option key={i} value={gende.name}>{gende.name}</option>
+            <option key={id} value={gende.name}>{gende.name}</option>
           )
         })}
       </select>

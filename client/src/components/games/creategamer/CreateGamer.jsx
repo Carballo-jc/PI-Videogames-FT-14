@@ -1,11 +1,10 @@
-import React,{useEffect,useState} from "react";
+import React,{useState} from "react";
 import create from "../../../assets/images/2.jpg";
 import { useForm } from "../../../hooks/useForm";
 import styles from "./styles.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { postGamer,getGendersGamer } from "../../../actions";
+import { postGamer } from "../../../actions";
 import styled from "styled-components";
-import { Checkbox } from "../../../hooks/Checkbox";
 
 const Error = styled.div`
 background-color: red;
@@ -29,10 +28,11 @@ const [error, setError] = useState(false)
     background_image: "",
     genres:[]
   });
-  const { name, description, released, rating, platforms, background_image,genres } = formValues;
-  useEffect(() => {
-dispatch(getGendersGamer())
-}, [dispatch]);
+  const { name, description, released, rating, platforms, background_image } = formValues;
+  console.log(formValues)
+//   useEffect(() => {
+// dispatch(getGendersGamer())
+// }, [dispatch]);
   const createGamer = () => {
     dispatch(postGamer(formValues));
   };
@@ -85,12 +85,12 @@ dispatch(getGendersGamer())
               </div> */}
               <div className={styles.form_radio}>
                 {
-                  genders.map((gender,i) =>{
+                  genders.map((gender) =>{
                     return(
-                     <div key={i} >
-                      <label >{gender.name}
+                     <div key={gender.id} >  
+                      <label >{gender.name}</label>
                       <input type='checkbox'  name='genres' value={gender.name} onChange={handleInputChange} multiple />
-                      </label>
+                    
                      </div>
                     )
                   })
