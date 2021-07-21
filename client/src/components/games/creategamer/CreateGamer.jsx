@@ -17,9 +17,7 @@ text-align:center;
 `;
 const CreateGamer = (props) => {
 const genders = useSelector(state => state.gamergender);
-useEffect(() => {
-dispatch(getGendersGamer())
-}, [getGendersGamer]);
+const dispatch = useDispatch();
 const [error, setError] = useState(false)
   const [formValues, handleInputChange] = useForm({
     name: "",
@@ -31,9 +29,10 @@ const [error, setError] = useState(false)
     genres:''
   });
   const { name, description, released, rating, platforms, background_image,genres } = formValues;
-  const dispatch = useDispatch();
+  useEffect(() => {
+dispatch(getGendersGamer())
+}, [dispatch]);
   const createGamer = () => {
-    console.log(formValues);
     dispatch(postGamer(formValues));
   };
   const handleCreate = (e) => {
@@ -63,15 +62,15 @@ const [error, setError] = useState(false)
               <div className={styles.form_group}>
                 <textarea
                   name="description"
-                  rows="10"
-                  cols="30"
+                  rows="5"
+                  cols="10"
                   value={description}
                   onChange={handleInputChange}
                 >
                   Agregue una descrepción
                 </textarea>
               </div>
-              <div className={styles.form_group}>
+              {/* <div className={styles.form_group}>
                 <label htmlFor="">Genero:</label>
                 <select name='genres'  onChange={handleInputChange}>
                  {
@@ -82,6 +81,18 @@ const [error, setError] = useState(false)
                    })
                  }
                 </select>
+              </div> */}
+              <div className={styles.form_radio}>
+                {
+                  genders.map((gender,i) =>{
+                    return(
+                     <>
+                      <label key={i}>{gender.name}</label>
+                      <input type="radio" value={gender.name} />
+                     </>
+                    )
+                  })
+                }
               </div>
               <div className={styles.form_group}>
                 <label>Plataforma</label>

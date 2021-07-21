@@ -14,7 +14,8 @@
 }
 .img{
     max-width: 400px;
-    height: 100%;
+    margin-top: auto;
+    height: 80%;
 }
 .title{
     color: white;
@@ -34,4 +35,11 @@ label{
     flex-direction: column;
     margin:10px;
     
+}
+.form_radio{
+    display:flex;
+    flex-wrap: wrap;
+    margin: 4px;
+    padding: 4px;
+    width: 450px;
 }

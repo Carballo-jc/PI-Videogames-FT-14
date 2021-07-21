@@ -1,5 +1,7 @@
 export const getGamerGenders = (genre, array) => {
-  let newArray = array.map((gamer) => gamer.name === genre);
+
+  let newArray =  array.filter((gamer) => 
+  gamer.genres?.some(gender => gender === genre));
   return newArray;
 };
 

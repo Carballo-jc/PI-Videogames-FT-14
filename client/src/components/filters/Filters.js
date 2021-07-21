@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { getOrder, getGendersGamer } from "../../actions/index";
+import { getOrder } from "../../actions/index";
 
 const Filters = () => {
   const [filter, setFilter] = useState("");

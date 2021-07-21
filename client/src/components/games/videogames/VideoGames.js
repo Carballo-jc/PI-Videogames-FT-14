@@ -27,8 +27,8 @@ export const VideoGames = () => {
   useEffect(() => {
     if (gamers?.length === 0) {
       dispatch(getGamers());
-      // dispatch(getGendersGamer());
     }
+    dispatch(getGendersGamer());
   },[]);
 
   return (

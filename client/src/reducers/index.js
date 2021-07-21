@@ -1,5 +1,5 @@
 import { GET_GAMERS, SEARCH_GAMER, GET_GAMER_ID ,CREATE_GAME,GAMER_ORDER,GAMER_GENDER,GAMER_ORIGIN,GENDER_GAME} from "../types";
-import { getGamerGenders } from '../selectores/getGamerGenders';
+import  getGamerGenders  from '../selectores/getGamerGenders';
 import { getMoviesOrder } from '../selectores/getMoviesOrder';
 import getGamerOrigin from "../selectores/getGamerOrigin";
 
@@ -45,11 +45,11 @@ const videoGames = (state = initialState, action) => {
               ...state,
               gamergender:action.payload
             };
-            // case GENDER_GAME:
-            //   return{
-            //     ...state,
-            //     gamerViews:[...getGamerGenders(action.payload,state.gamergender)]
-            //   }
+            case GENDER_GAME:
+              return{
+                ...state,
+                gamerViews:[...getGamerGenders(action.payload, state.gamers)]
+              }
             case GAMER_ORIGIN:
               return{
                 ...state,
