@@ -24,10 +24,12 @@ export const VideoGames = () => {
     setMax(e.target.id * 20);
   };
 
+  
   useEffect(() => {
-    if (gamers?.length === 0) {
-      dispatch(getGamers());
-    }
+    if(gamers?.length === 0){
+      dispatch(getGamers())
+    };
+      // dispatch(getGamers());
     dispatch(getGendersGamer());
   },[]);
 
@@ -37,7 +39,7 @@ export const VideoGames = () => {
         {gamers?.length === 0 ? (
           <Loading />
         ) : (
-          gamers?.map((gamer) =>
+          gamers.map((gamer) =>
            <GamerCard key={gamer.id} gamer={gamer} />).slice(min, max)
         )}
       </div>

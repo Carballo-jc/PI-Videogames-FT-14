@@ -16,6 +16,7 @@ import {
 export const  getGamers =() =>async(dispatch)=>{
     try {
       const resp = await axios.get(API_URL);
+      
       dispatch({
         type: GET_GAMERS,
         payload: resp.data.gamerAll,
@@ -27,6 +28,7 @@ export const  getGamers =() =>async(dispatch)=>{
   
 }
 export const  postGamer=(values) => async(dispatch)=>{
+  console.log(values)
    try {
     const gamer = await axios.post(API_ID_URL, values);
 
@@ -35,6 +37,7 @@ export const  postGamer=(values) => async(dispatch)=>{
       type: CREATE_GAME,
       payload: gamer.data
     });
+    dispatch(getGamers())
    } catch (error) {
      console.log(error);
      console.log('Hubo un error al crear el videoguego')

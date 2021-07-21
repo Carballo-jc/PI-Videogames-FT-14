@@ -5,6 +5,7 @@ import styles from "./styles.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { postGamer,getGendersGamer } from "../../../actions";
 import styled from "styled-components";
+import { Checkbox } from "../../../hooks/Checkbox";
 
 const Error = styled.div`
 background-color: red;
@@ -26,7 +27,7 @@ const [error, setError] = useState(false)
     rating: "",
     platforms: "",
     background_image: "",
-    genres:''
+    genres:[]
   });
   const { name, description, released, rating, platforms, background_image,genres } = formValues;
   useEffect(() => {
@@ -86,10 +87,11 @@ dispatch(getGendersGamer())
                 {
                   genders.map((gender,i) =>{
                     return(
-                     <>
-                      <label key={i}>{gender.name}</label>
-                      <input type="radio" value={gender.name} />
-                     </>
+                     <div key={i} >
+                      <label >{gender.name}
+                      <input type='checkbox'  name='genres' value={gender.name} onChange={handleInputChange} multiple />
+                      </label>
+                     </div>
                     )
                   })
                 }

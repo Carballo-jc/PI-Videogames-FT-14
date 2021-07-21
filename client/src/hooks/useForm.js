@@ -7,11 +7,20 @@ export const useForm = (initialState = {}) => {
     setValues(initialState);
   };
 
-  const handleInputChange = ({ target }) => {
-    setValues({
-      ...values,
-      [target.name]: target.value,
-    });
+  const handleInputChange = (e) => {
+    if(e.target.name === 'genres'){
+      const array = values[e.target.name]
+      setValues({
+        ...values,
+        [e.target.name]:array.concat(e.target.value) ,
+      });
+    }else{
+
+      setValues({
+        ...values,
+        [e.target.name]: e.target.value,
+      });
+    }
   };
 
   return [values, handleInputChange, reset];

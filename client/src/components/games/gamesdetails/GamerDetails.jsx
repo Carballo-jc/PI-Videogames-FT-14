@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getGamerDetail } from "../../../actions";
+import { getGamerDetail, getGendersGamer } from "../../../actions";
 import styles from "./styles.module.css";
 import parse from "html-react-parser";
 import { FaStar } from "react-icons/fa";
@@ -9,7 +9,7 @@ import Loading from "../loading/Loading";
 
 const GamerDetails = (props) => {
   const gamer = useSelector((state) => state.onegamer);
-  const { name, background_image, rating, released, genres, platforms } = gamer;
+  const { name, background_image, rating, released, genres, platforms,genders } = gamer;
   const description = gamer ? parse(`${gamer.description}`) : undefined;
   const dispatch = useDispatch();
   const { id } = useParams();
@@ -18,7 +18,7 @@ const GamerDetails = (props) => {
     dispatch(getGamerDetail(id));
   }, [dispatch, id]);
   //regresar
-  const handleBack = () => {
+  const handleBack = (e) => {
     props.history.push(`/videogames`);
   };
   return (
@@ -49,7 +49,9 @@ const GamerDetails = (props) => {
                       ? genres.map((gender, i) => (
                           <span key={i}>{gender.name},</span>
                         ))
-                      : null}
+                      : genders.map((gender, i) => (
+                        <span key={i}>{gender.name},</span>
+                      ))}
                   </p>
                 </div>
                 <div className={styles.ranking}>
@@ -60,13 +62,13 @@ const GamerDetails = (props) => {
                   <p>Plataformas:</p>
                   <div className={styles.company}>
 
-                    {/* {platforms 
+                   {Array.isArray(platforms)  
                       ? platforms?.map((element, i) => {
                           return (
                             <span key={i}>{element.platform.name}, </span>
                           );
                         })
-                      : null} */}
+                      : <span>{platforms}, </span>} 
                   </div>
                 </div>
                 <div className={styles.descriptions}>
