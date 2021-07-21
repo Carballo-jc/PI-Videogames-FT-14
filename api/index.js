@@ -29,16 +29,11 @@ const PORT = process.env.PORT || 3001;
 
 
 // Syncing all the models at once.
-conn.sync({ force: true }).then(async () => {
+conn.sync({ force: false }).then(async () => {
   server.listen(PORT, async () => {
     console.log(`servidor listening at:${PORT}`); // eslint-disable-line no-console
 
-    // axios.get(`${URL_BASE}games?${API_KEY}`).then((result) => {
-    //   result.data.results.map((game) => {
-    //     const { name, description, platforms } = game;
-    //   });
-    // });
-
+    
     const gamerOne = await Videogame.create({
       name: "frefire",
       description: "juego movil",

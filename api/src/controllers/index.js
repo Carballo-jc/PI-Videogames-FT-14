@@ -94,7 +94,7 @@ const getGamer = async (name) => {
         released,
         rating,
         platforms,
-        slug,
+     
         genres,
       } = gamer;
       return {
@@ -103,7 +103,6 @@ const getGamer = async (name) => {
         background_image,
         released,
         rating,
-        slug,
         genres: genres?.map((genre) => genre.name),
         platforms: platforms?.map((consola) => consola.platform.name),
       };
@@ -114,26 +113,28 @@ const getGamer = async (name) => {
 };
 //desde la base de datos
 const getGamerFromDB = async () => {
+  // const gamerDB = await Videogame.findAll({
+  //   include: {
+  //     model: Gender,
+  //     attributes: ["name"],
+  //   },
+  // });
   const gamerDB = await Videogame.findAll({
-    include: {
-      model: Gender,
-      attributes: ["name"],
-      // attributes: ["gender"],
-    },
-  });
+    include:[Gender]
+  })
 
-  const videogamersFromDB = gamerDB.map((result) => {
+  const videogamersFromDB = gamerDB.map((dato) => {
+    // const { name, id, background_image, released, rating, platforms, genders } =
+    //   result.dataValues;
 
-    const { name, id, background_image, released, rating, platforms, genders } =
-      result.dataValues;
     return {
-      id,
-      name,
-      background_image,
-      released,
-      rating,
-      platforms,
-      genders,
+      id: dato.id,
+      name: dato.name,
+      background_image: dato.background_image,
+      released:dato.released,
+      rating:dato.rating,
+      platforms:dato.platforms,
+      genres: dato.genders?.map(gender => gender.name)
     };
   });
   return videogamersFromDB;

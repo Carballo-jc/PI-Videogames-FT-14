@@ -5,7 +5,7 @@ const {
   getGamerAll,
   getGamer,
 } = require("../controllers");
-const { Videogame } = require("../db");
+const { Videogame,Gender} = require("../db");
 
 const router = require("express").Router();
 
@@ -35,13 +35,16 @@ router.post("/", async (req, res,next) => {
       description,
       released,
       rating,
-      genres,
       background_image,
       platforms,
     });
-        // await createGame.setGenders(genres);
+    const gender = await Gender.findAll({
+      where:{name:genres}
+    })
+        await createGame.setGenders(gender);
         return res.json(createGame);
   } catch (error) {
+    console.log('hubo un error al crear el juego')
     next(error);
     
   }
