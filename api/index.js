@@ -29,34 +29,34 @@ const PORT = process.env.PORT || 3001;
 
 
 // Syncing all the models at once.
-conn.sync({ force: false }).then(async () => {
+conn.sync({ force: true }).then(async () => {
   server.listen(PORT, async () => {
     console.log(`servidor listening at:${PORT}`); // eslint-disable-line no-console
 
     
-    const gamerOne = await Videogame.create({
-      name: "frefire",
-      description: "juego movil",
-      platforms: "xbox",
-      background_image:
-        "https://phantom-marca.unidadeditorial.es/cdecffb1a8da6f48222d54dd97cb3c40/resize/1320/f/jpg/assets/multimedia/imagenes/2021/03/27/16168527358201.jpg",
-    });
-    const gamerTwo = await Videogame.create({
-      name: "frefire2",
-      description: "juego movil apuebas",
-      platforms: "play",
-      background_image:
-        "https://depor.com/resizer/jEVIIBcmHSfe-vlAU-m-uzxQycM=/580x330/smart/filters:format(jpeg):quality(75)/cloudfront-us-east-1.images.arcpublishing.com/elcomercio/EL4BGOSECFBUHKIEVLBMAZJS4M.jpg",
-    });
-    const gender1 = await Gender.create({
-      name: "a",
-    });
-    const gender2 = await Gender.create({
-      name: "b",
-    });
-    gamerOne.setGenders(gender1);
-    gamerOne.setGenders(gender2);
-    gamerTwo.setGenders(gender2);
+    // const gamerOne = await Videogame.create({
+    //   name: "frefire",
+    //   description: "juego movil",
+    //   platforms: "xbox",
+    //   background_image:
+    //     "https://phantom-marca.unidadeditorial.es/cdecffb1a8da6f48222d54dd97cb3c40/resize/1320/f/jpg/assets/multimedia/imagenes/2021/03/27/16168527358201.jpg",
+    // });
+    // const gamerTwo = await Videogame.create({
+    //   name: "frefire2",
+    //   description: "juego movil apuebas",
+    //   platforms: "play",
+    //   background_image:
+    //     "https://depor.com/resizer/jEVIIBcmHSfe-vlAU-m-uzxQycM=/580x330/smart/filters:format(jpeg):quality(75)/cloudfront-us-east-1.images.arcpublishing.com/elcomercio/EL4BGOSECFBUHKIEVLBMAZJS4M.jpg",
+    // });
+    // const gender1 = await Gender.create({
+    //   name: "a",
+    // });
+    // const gender2 = await Gender.create({
+    //   name: "b",
+    // });
+    // gamerOne.setGenders(gender1);
+    // gamerOne.setGenders(gender2);
+    // gamerTwo.setGenders(gender2);
     //precargar generos a la BD
     const allGenres = await getGenderAll();
     allGenres.forEach(async (genre) => {

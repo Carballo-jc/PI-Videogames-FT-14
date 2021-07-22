@@ -1,9 +1,7 @@
 const express = require("express");
 const {
   getGamerById,
-  getGamerFromDB,
-  getGamerAll,
-  getGamer,
+  
 } = require("../controllers");
 const { Videogame,Gender} = require("../db");
 
