@@ -42,13 +42,13 @@ const [error, setError] = useState(false)
   };
   return (
     <div className={styles.container}>
-      <div className={styles.content_items}>
         <img className={styles.img} src={create} alt="" />
+      <div>
         <div>
           <h3 className={styles.title}>Create Gamer!</h3>
           <form onSubmit={handleCreate}>
             {error ? <Error>Todos los campos son Obligatorios</Error> :null}
-            <div>
+            <div className={styles.content_items}>
               <div className={styles.form_group}>
                 <label>Nombre del Juego</label>
                 <input
@@ -108,12 +108,13 @@ const [error, setError] = useState(false)
                   required
                 />
               </div>
-            </div>
+            
             <div className={styles.form_group}>
               <label>Fecha de lanzamiento:</label>
               <input
                 type="date"
                 name="released"
+                className={styles.input_search}
                 value={released}
                 onChange={handleInputChange}
                 required
@@ -130,8 +131,9 @@ const [error, setError] = useState(false)
                 required
               />
             </div>
-            <div className="mb-6 text-center">
-              <button type="submit">Create Gamer</button>
+            </div>
+            <div>
+              <button className={styles.btn_create} type="submit">Create Gamer</button>
             </div>
           </form>
         </div>
