@@ -1,0 +1,10 @@
+.filter_select{
+    margin-right: 5px;
+    width: 147px;
+    /* outline: none; */
+    height: 30px;
+    border: none;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+}

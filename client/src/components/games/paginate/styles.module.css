@@ -7,8 +7,11 @@
 .btn{
     background-color:#3786FC;
     width: 40px;
+    font-size: 18px;
+    font-weight: 600;
     height:30px;
     border: none;
     margin: 2px;
     color: white;
+    cursor: pointer;
 }

@@ -13,7 +13,7 @@ const Navbar = () => {
     <div className={styles.navbar}>
       <div className={styles.navbar_logo}>
         <Link to="/" className={styles.link_item}>
-          <h2>Video Games App</h2>
+          <h2 data-testid="title_app">Video Games App</h2>
         </Link>
       </div>
       <Filters />

@@ -17,6 +17,7 @@ describe("<Navbar />", () => {
     expect(wrapper.find(Link)).toHaveLength(3);
   });
   it('The first link should be part of the logo must have the text "Video Games App" and lead to /', () => {
+    
     expect(wrapper.find(Link).at(0).prop("to")).toEqual("/");
     expect(wrapper.find(Link).at(0).text()).toEqual("Video Games App");
   });

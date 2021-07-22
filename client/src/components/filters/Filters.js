@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getOrder } from "../../actions/index";
+import styles from './styles.module.css'
 
 const Filters = () => {
   const [filter, setFilter] = useState("");
@@ -18,7 +19,8 @@ const Filters = () => {
   return (
     <form>
       <select
-        style={{ width: 120 }}
+        
+        className={styles.filter_select}
         name="filter"
         onChange={(e) => handleFilter(e)}
       >

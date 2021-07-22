@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { setGamerOrigin } from "../../actions";
+import styles from './styles.module.css'
 
 const FilterOrigin = () => {
   const [origin, setOrigin] = useState("");
@@ -18,7 +19,7 @@ const FilterOrigin = () => {
   return (
     <form>
       <select
-        style={{ width: 100 }}
+        className={styles.filter_select}
         name="filter"
         onChange={(e) => handleFilter(e)}
       >

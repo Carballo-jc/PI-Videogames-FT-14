@@ -1,6 +1,7 @@
 import React,{useState,useEffect} from "react";
 import { useDispatch,useSelector } from "react-redux";
 import { setGenderGamers } from "../../actions";
+import styles from './styles.module.css'
 
 const FilterGender = () => {
  const genders = useSelector(state => state.gamergender)
@@ -14,13 +15,7 @@ const FilterGender = () => {
           dispatch(setGenderGamers(gender));
         }
       }
-      // if(gender.length === 0){
-      //   getGender()
-
-      // }
-      // useEffect(() => {
-      //   dispatch(getGendersGamer())
-      //   }, []);
+    
 
       useEffect(() => {
           getGender()
@@ -28,7 +23,7 @@ const FilterGender = () => {
   return (
     <div>
       <select
-        style={{ width: 120 }}
+        className={styles.filter_select}
         name="filter"
         onChange={(e) => handleFilter(e)}
       >

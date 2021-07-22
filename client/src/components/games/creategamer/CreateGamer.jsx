@@ -29,7 +29,6 @@ const [error, setError] = useState(false)
     genres:[]
   });
   const { name, description, released, rating, platforms, background_image } = formValues;
-  console.log(formValues)
 //   useEffect(() => {
 // dispatch(getGendersGamer())
 // }, [dispatch]);
@@ -58,6 +57,7 @@ const [error, setError] = useState(false)
                   name="name"
                   value={name}
                   onChange={handleInputChange}
+                  required
                 />
               </div>
               <div className={styles.form_group}>
@@ -67,22 +67,12 @@ const [error, setError] = useState(false)
                   cols="10"
                   value={description}
                   onChange={handleInputChange}
+                  required
                 >
                   Agregue una descrepción
                 </textarea>
               </div>
-              {/* <div className={styles.form_group}>
-                <label htmlFor="">Genero:</label>
-                <select name='genres'  onChange={handleInputChange}>
-                 {
-                   genders?.map( gender =>{
-                     return(
-                       <option  value={gender.name} key={gender.id}>{gender.name}</option>
-                     )
-                   })
-                 }
-                </select>
-              </div> */}
+            
               <div className={styles.form_radio}>
                 {
                   genders.map((gender) =>{
@@ -104,6 +94,7 @@ const [error, setError] = useState(false)
                   name="platforms"
                   value={platforms}
                   onChange={handleInputChange}
+                  required
                 />
               </div>
               <div className={styles.form_group}>
@@ -114,6 +105,7 @@ const [error, setError] = useState(false)
                   name="background_image"
                   value={background_image}
                   onChange={handleInputChange}
+                  required
                 />
               </div>
             </div>
@@ -124,6 +116,7 @@ const [error, setError] = useState(false)
                 name="released"
                 value={released}
                 onChange={handleInputChange}
+                required
               />
             </div>
             <div className={styles.form_group}>
@@ -134,6 +127,7 @@ const [error, setError] = useState(false)
                 name="rating"
                 value={rating}
                 onChange={handleInputChange}
+                required
               />
             </div>
             <div className="mb-6 text-center">

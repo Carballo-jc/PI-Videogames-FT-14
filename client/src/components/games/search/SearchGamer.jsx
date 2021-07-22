@@ -25,7 +25,7 @@ const SearchGamer = () => {
           placeholder="Buscar Juego"
           onChange={(e) => setSearchGamer(e.target.value)}
         />
-        <button type="submit" className="">
+        <button type="submit" className={styles.btn_search}>
           Buscar
         </button>
       </form>
