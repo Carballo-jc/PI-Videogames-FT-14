@@ -1,6 +1,6 @@
 import React, {useState,useEffect} from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getGamers,getGendersGamer } from "../../../actions";
+import { getGamers,getGendersGamer,clearDetail } from "../../../actions";
 import styles from "./styles.module.css";
 import GamerCard from "../gamerCard/GamerCard";
 import Loading from "../loading/Loading";
@@ -29,7 +29,6 @@ export const VideoGames = () => {
     if(gamers?.length === 0){
       dispatch(getGamers())
     };
-      // dispatch(getGamers());
     dispatch(getGendersGamer());
   },[dispatch]);
 

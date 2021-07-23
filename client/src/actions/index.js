@@ -97,3 +97,9 @@ export function setGamerOrigin(origin){
     }
 }
 
+export function clearDetail(){
+  return{
+      type:GET_GAMER_ID,
+      payload:[]
+  }
+}

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getGamerDetail } from "../../../actions";
+import { getGamerDetail,clearDetail } from "../../../actions";
 import styles from "./styles.module.css";
 import parse from "html-react-parser";
 import { FaStar } from "react-icons/fa";
@@ -24,10 +24,12 @@ const GamerDetails = (props) => {
 
   useEffect(() => {
     dispatch(getGamerDetail(id));
+    // return()=>dispatch(clearDetail())
   }, [dispatch, id]);
   //regresar
   const handleBack = (e) => {
     props.history.push(`/videogames`);
+
   };
   return (
     <div className={styles.card_detalle}>
