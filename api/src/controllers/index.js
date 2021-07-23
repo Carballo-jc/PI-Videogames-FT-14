@@ -103,9 +103,7 @@ const getGamerFromDB = async () => {
   const gamerDB = await Videogame.findAll({
     include:[Gender]
   })
-
   const videogamersFromDB = gamerDB.map((dato) => {
-   
     return {
       id: dato.id,
       name: dato.name,
@@ -116,6 +114,8 @@ const getGamerFromDB = async () => {
       genres: dato.genders?.map(gender => gender.name)
     };
   });
+  console.log(gamerDB)
+
   return videogamersFromDB;
 };
 //obtener por genero
